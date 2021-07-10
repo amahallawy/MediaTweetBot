@@ -10,7 +10,9 @@ const base64image = Buffer.from(mediaFile).toString('base64');
 uploadClient.post('media/upload', { media_data: base64image }).then(media => {
     console.log('You successfully uploaded media');
 
-    apiClient.post('statuses/update', { status: 'Hello world!', media_ids: media.media_id_string }).then(tweet => {
+    var media_id = media.media_id_string;
+
+    apiClient.post('statuses/update', { status: 'Hello world!', media_ids: media_id }).then(tweet => {
         console.log('Your image tweet is posted successfully');
     }).catch(console.error);
 
